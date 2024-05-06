@@ -88,7 +88,7 @@ def get_top_data():
 
 # Main function to run the app
 def main():
-    st.title("Your Tracks and Artists on Spotify")
+   st.title("Your Tracks and Artists on Spotify")
    # If token exists, fetch top tracks and artists
    tracks, artists = get_top_data()
    # Display top tracks and artists
