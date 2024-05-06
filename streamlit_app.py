@@ -24,7 +24,8 @@ def get_top_data():
 
 def authenticate():
     auth_url = auth_manager.get_authorize_url()
-    webbrowser.open_new(auth_url)
+    st.markdown(f'<script>window.open("{auth_url}", "_blank");</script>', unsafe_allow_html=True)
+
 
 # Main function to run the app
 def main():
