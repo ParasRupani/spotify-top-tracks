@@ -66,7 +66,7 @@ from spotipy.oauth2 import SpotifyOAuth
 # Define your Spotify client ID, client secret, and redirect URI
 CLIENT_ID = st.secrets["CLIENT_ID"]
 CLIENT_SECRET = st.secrets["CLIENT_SECRET"]
-REDIRECT_URI = "https://your-streamlit-app-url.com/auth_callback"
+REDIRECT_URI = "https://spotify-user-tracks.streamlit.app/auth_callback"
 
 # Set up Spotify authorization manager with Authorization Code Flow
 auth_manager = SpotifyOAuth(
