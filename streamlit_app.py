@@ -90,7 +90,7 @@ def main():
     st.title("Your Tracks and Artists on Spotify")
 
     # Check if the user has already authenticated
-    if "client_secret" not in st.session_state:
+    if "CLIENT_SECRET" not in st.session_state:
         # If not authenticated, provide authentication link
         auth_url = auth_manager.get_authorize_url()
         st.write("Please authenticate with Spotify to continue.")
