@@ -8,7 +8,8 @@ from spotipy.oauth2 import SpotifyClientCredentials
 # client_id, client_secret = secrets.values()
 
 # Loading Streamlit Secrets
-client_id, client_secret = st.secrets["CLIENT_ID", "CLIENT_SECRET"]
+client_id = st.secrets["CLIENT_ID"]
+client_secret = st.secrets["CLIENT_SECRET"]
 
 # Set up Spotify authorization manager with Client Credentials Flow
 auth_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
