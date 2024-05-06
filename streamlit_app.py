@@ -58,7 +58,6 @@
 # # Run the app
 # if __name__ == "__main__":
 #     main()
-
 import streamlit as st
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
@@ -98,9 +97,9 @@ def main():
         st.markdown(f'[Authenticate with Spotify]({auth_url})')
         
         # Check if the authentication code is provided in the URL
-        if "code" in st.session_state:
+        if "code" in st.query_params:
             # Exchange the code for token
-            st.session_state.spotify_token_info = auth_manager.get_access_token(st.session_state.code)
+            st.session_state.spotify_token_info = auth_manager.get_access_token(st.query_params["code"])
     else:
         # Get top tracks and artists if authentication is successful
         tracks, artists = get_top_data()
