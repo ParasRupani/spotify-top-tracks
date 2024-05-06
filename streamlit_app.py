@@ -58,7 +58,6 @@
 # # Run the app
 # if __name__ == "__main__":
 #     main()
-
 import streamlit as st
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
@@ -89,21 +88,33 @@ def get_top_data():
 # Main function to run the app
 def main():
     st.title("Your Tracks and Artists on Spotify")
+    if not is_authenticated():
+        authenticate()
+        return
+
+    # If token exists, fetch top tracks and artists
+    tracks, artists = get_top_data()
+    # Display top tracks and artists
+    st.subheader("Top 5 Tracks:")
+    for idx, track in enumerate(tracks['items'], start=1):
+        st.write(f"{idx}. {track['name']}")
+    st.subheader("Top 5 Artists:")
+    for idx, artist in enumerate(artists['items'], start=1):
+        st.write(f"{idx}. {artist['name']}")
+
+# Function to check if user is authenticated
+def is_authenticated():
     try:
-        # If token exists, fetch top tracks and artists
-        tracks, artists = get_top_data()
-        # Display top tracks and artists
-        st.subheader("Top 5 Tracks:")
-        for idx, track in enumerate(tracks['items'], start=1):
-            st.write(f"{idx}. {track['name']}")
-        st.subheader("Top 5 Artists:")
-        for idx, artist in enumerate(artists['items'], start=1):
-            st.write(f"{idx}. {artist['name']}")
+        sp = spotipy.Spotify(auth_manager=auth_manager)
+        # Check if token is valid
+        sp.current_user()
+        return True
     except SpotifyException as e:
         if e.http_status == 401 and e.code == -1:
-            authenticate()
+            return False
         else:
             st.error("An error occurred with Spotify authentication.")
+            return False
 
 # Function to authenticate with Spotify
 def authenticate():
@@ -115,4 +126,3 @@ def authenticate():
 # Run the app
 if __name__ == "__main__":
     main()
-
