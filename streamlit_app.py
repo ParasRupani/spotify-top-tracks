@@ -5,7 +5,7 @@ from spotipy.oauth2 import SpotifyOAuth
 
 client_id = st.secrets["CLIENT_ID"]
 client_secret = st.secrets["CLIENT_SECRET"]
-redirect_uri = "http://localhost:8501/callback"  # Streamlit's default port
+redirect_uri = "http://localhost:8501/"  # Streamlit's default port
 
 # Set up Spotify authorization manager with Authorization Code Flow
 auth_manager = SpotifyOAuth(client_id=client_id, client_secret=client_secret, redirect_uri=redirect_uri, scope="user-top-read", open_browser=False)
