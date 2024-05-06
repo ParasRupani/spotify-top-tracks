@@ -33,7 +33,7 @@ def main():
         global spotify_token
         auth_url = auth_manager.get_authorize_url()
         st.markdown(f'<a href="{auth_url}" target="_blank">Authenticate with Spotify</a>', unsafe_allow_html=True)
-        spotify_token = auth_manager.token.get("access_token")
+        spotify_token = auth_manager.get_access_token(st.session.request_context.request.query_params.get("code"))["access_token"]
 
     else:
         # Get top tracks and artists if authentication is successful
