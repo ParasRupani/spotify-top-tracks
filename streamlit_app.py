@@ -59,7 +59,6 @@
 # if __name__ == "__main__":
 #     main()
 
-
 import streamlit as st
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
@@ -70,8 +69,6 @@ redirect_uri = "https://spotify-user-tracks.streamlit.app/"  # Streamlit's defau
 
 # Set up Spotify authorization manager with Authorization Code Flow
 auth_manager = SpotifyOAuth(client_id=client_id, client_secret=client_secret, redirect_uri=redirect_uri, scope="user-top-read", open_browser=False)
-
-spotify_token = None
 
 # Function to get top tracks and artists
 def get_top_data():
