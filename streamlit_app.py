@@ -1,18 +1,27 @@
 import streamlit as st
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+from spotipy.oauth2 import SpotifyOAuth
 
 # from dotenv import dotenv_values
 # # Set up Spotify API credentials
 # secrets = dotenv_values(".env")
 # client_id, client_secret = secrets.values()
 
-# Loading Streamlit Secrets
+# # Loading Streamlit Secrets
+# client_id = st.secrets["CLIENT_ID"]
+# client_secret = st.secrets["CLIENT_SECRET"]
+
+# # Set up Spotify authorization manager with Client Credentials Flow
+# auth_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
+
 client_id = st.secrets["CLIENT_ID"]
 client_secret = st.secrets["CLIENT_SECRET"]
+redirect_uri = "http://localhost:8501/"  # Streamlit's default port
 
-# Set up Spotify authorization manager with Client Credentials Flow
-auth_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
+# Set up Spotify authorization manager with Authorization Code Flow
+auth_manager = SpotifyOAuth(client_id=client_id, client_secret=client_secret, redirect_uri=redirect_uri, scope="user-top-read", open_browser=False)
+
 
 def truncate_title(title, max_len=45):
     if len(title) > max_len:
