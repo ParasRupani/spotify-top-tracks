@@ -88,7 +88,7 @@ def get_top_data():
 # Main function to run the app
 def main():
     st.title("Your Tracks and Artists on Spotify")
-    if not is_authenticated():
+    if is_authenticated():
         authenticate()
         return
 
