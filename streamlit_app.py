@@ -1,5 +1,6 @@
 import streamlit as st
 import spotipy
+import webbrowser
 from spotipy.oauth2 import SpotifyOAuth
 
 client_id = st.secrets["CLIENT_ID"]
@@ -23,10 +24,7 @@ def get_top_data():
 
 def authenticate():
     auth_url = auth_manager.get_authorize_url()
-    st.experimental_rerun()  # Rerun the app to update the session state
-    js = f"window.open('{auth_url}')"  # JavaScript to open the auth URL in a new tab
-    html = f"<script>{js}</script>"
-    st.markdown(html, unsafe_allow_html=True)
+    webbrowser.open_new(auth_url)
 
 # Main function to run the app
 def main():
