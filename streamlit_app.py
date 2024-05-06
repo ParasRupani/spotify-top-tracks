@@ -90,7 +90,7 @@ def main():
     st.title("Your Tracks and Artists on Spotify")
 
     # Check if the user has already authenticated
-    if "CLIENT_SECRET" not in st.session_state:
+    if "spotify_token_info" not in st.session_state:
         # If not authenticated, provide authentication link
         auth_url = auth_manager.get_authorize_url()
         st.write("Please authenticate with Spotify to continue.")
@@ -100,6 +100,8 @@ def main():
         if "code" in st.query_params:
             # Exchange the code for token
             st.session_state.spotify_token_info = auth_manager.get_access_token(st.query_params["code"])
+            # Redirect to prevent re-authentication
+            st.experimental_rerun()
     else:
         # Get top tracks and artists if authentication is successful
         tracks, artists = get_top_data()
