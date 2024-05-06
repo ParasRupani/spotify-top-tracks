@@ -22,8 +22,11 @@ def get_top_data():
     return top_tracks, top_artists
 
 # Function to truncate long titles
-def truncate_title(title):
-    return title[:50] + '...' if len(title) > 50 else title
+def truncate_title(title, max_len=45):
+    if len(title) > max_len:
+        return title[:max_len] + ".."
+    else:
+        return title
 
 # Main function to run the app
 def main():
