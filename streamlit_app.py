@@ -27,12 +27,11 @@ def main():
 
     # Add a button to initiate authentication
     if "spotify_token_info" not in st.session_state:
-        if st.button("Authenticate with Spotify"):
+        button_clicked = st.button("Authenticate with Spotify")
+        if button_clicked:
             auth_url = auth_manager.get_authorize_url()
-            webbrowser.open(auth_url)  # Open Spotify authentication page in default web browser
+            st.markdown(f"[Click here to authenticate with Spotify]({auth_url})", unsafe_allow_html=True,)
 
-            # Redirecting the user to the Spotify authentication page
-            st.experimental_rerun()
     else:
         # Get top tracks and artists if authentication is successful
         tracks, artists = get_top_data()
