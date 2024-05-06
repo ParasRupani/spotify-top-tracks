@@ -22,18 +22,14 @@ def get_top_data():
     
     return top_tracks, top_artists
 
-def authenticate():
-    auth_url = auth_manager.get_authorize_url()
-    st.markdown(f'<script>window.open("{auth_url}", "_blank");</script>', unsafe_allow_html=True)
-
-
 # Main function to run the app
 def main():
     st.title("Your Tracks and Artists on Spotify")
 
     # Add a button to initiate authentication
     if "spotify_token_info" not in st.session_state:
-        button_clicked = st.button("Authenticate with Spotify", on_click=authenticate)
+        auth_url = auth_manager.get_authorize_url()
+        st.markdown(f'<a href="{auth_url}" target="_blank">Authenticate with Spotify</a>', unsafe_allow_html=True)
 
     else:
         # Get top tracks and artists if authentication is successful
