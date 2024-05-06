@@ -10,6 +10,8 @@ redirect_uri = "https://spotify-user-tracks.streamlit.app/"  # Streamlit's defau
 # Set up Spotify authorization manager with Authorization Code Flow
 auth_manager = SpotifyOAuth(client_id=client_id, client_secret=client_secret, redirect_uri=redirect_uri, scope="user-top-read", open_browser=False)
 
+spotify_token = None
+
 # Function to get top tracks and artists
 def get_top_data():
     sp = spotipy.Spotify(auth_manager=auth_manager)
@@ -28,8 +30,10 @@ def main():
 
     # Add a button to initiate authentication
     if "spotify_token_info" not in st.session_state:
+        global spotify_token
         auth_url = auth_manager.get_authorize_url()
         st.markdown(f'<a href="{auth_url}" target="_blank">Authenticate with Spotify</a>', unsafe_allow_html=True)
+        spotify_token = auth_manager._token_access_token
 
     else:
         # Get top tracks and artists if authentication is successful
