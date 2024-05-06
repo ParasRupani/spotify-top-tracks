@@ -89,7 +89,7 @@ def get_top_data():
 # Main function to run the app
 def main():
     st.title("Your Tracks and Artists on Spotify")
-     if SpotifyException.http_status == 401 and SpotifyException.code == -1:
+    if SpotifyException.http_status == 401 and SpotifyException.code == -1:
         authenticate()
     else:
         # If token exists, fetch top tracks and artists
