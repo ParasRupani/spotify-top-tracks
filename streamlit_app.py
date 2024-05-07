@@ -28,16 +28,19 @@ def truncate_title(title, max_len=45):
     else:
         return title
 
+def open_spotify_auth(auth_url):
+    st.markdown(f'<script>window.open("{auth_url}", "_blank");</script>', unsafe_allow_html=True)
+
 # Main function to run the app
 def main():
     st.title("Your Tracks and Artists on Spotify")
 
-    # Check if the user has already authenticated
+    # Check if the user has already authenticated       
     if "spotify_token_info" not in st.session_state:
         # If not authenticated, provide authentication link
         auth_url = auth_manager.get_authorize_url()
         st.write("Please authenticate with Spotify to continue.")
-        st.markdown(f'[Authenticate with Spotify]({auth_url})')
+        button_clicked = st.button("Authenticate with Spotify", on_click=lambda: open_spotify_auth(auth_url))
         
         # Check if the authentication code is provided in the URL
         if "code" in st.query_params:
