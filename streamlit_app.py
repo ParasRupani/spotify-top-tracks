@@ -40,7 +40,7 @@ def main():
         # If not authenticated, provide authentication link
         auth_url = auth_manager.get_authorize_url()
         st.write("Please authenticate with Spotify to continue.")
-        button_clicked = st.button("Authenticate with Spotify", on_click=lambda: open_spotify_auth(auth_url))
+        st.markdown(f'<a href="{auth_url}" target="_blank"><button>Authenticate with Spotify</button></a>', unsafe_allow_html=True)
         
         # Check if the authentication code is provided in the URL
         if "code" in st.query_params:
