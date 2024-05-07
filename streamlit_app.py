@@ -4,7 +4,7 @@ from spotipy.oauth2 import SpotifyOAuth
 
 client_id = st.secrets["CLIENT_ID"]
 client_secret = st.secrets["CLIENT_SECRET"]
-redirect_uri = "https://top-spotify-tracks.streamlit.app/"
+redirect_uri = "https://spotify-top-tracks.streamlit.app/"
 
 # Set up Spotify authorization manager with Authorization Code Flow
 auth_manager = SpotifyOAuth(client_id=client_id, client_secret=client_secret, redirect_uri=redirect_uri, scope="user-top-read", open_browser=False)
@@ -28,19 +28,16 @@ def truncate_title(title, max_len=45):
     else:
         return title
 
-def open_spotify_auth():
-    auth_url = auth_manager.get_authorize_url()
-    st.markdown(f'<script>window.open("{auth_url}", "_blank");</script>', unsafe_allow_html=True)
-
-
 # Main function to run the app
 def main():
     st.title("Your Tracks and Artists on Spotify")
 
-    # Check if the user has already authenticated       
+    # Check if the user has already authenticated
     if "spotify_token_info" not in st.session_state:
         # If not authenticated, provide authentication link
-        st.button("Authenticate with Spotify", on_click=open_spotify_auth)
+        auth_url = auth_manager.get_authorize_url()
+        st.write("Please authenticate with Spotify to continue.")
+        st.markdown(f'[Authenticate with Spotify]({auth_url})')
         
         # Check if the authentication code is provided in the URL
         if "code" in st.query_params:
