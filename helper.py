@@ -8,9 +8,11 @@ import requests
 import eli5
 from eli5.sklearn import PermutationImportance
 
-# Set up Spotify API credentials
-secrets = dotenv_values(".env")
-client_id, client_secret = secrets.values()
+# # Set up Spotify API credentials
+# secrets = dotenv_values(".env")
+# client_id, client_secret = secrets.values()
+
+client_id, client_secret = st.secrets()
 
 auth_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
 sp = spotipy.Spotify(auth_manager=auth_manager)
