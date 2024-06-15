@@ -3,7 +3,7 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import requests
 # from dotenv import dotenv_values
-
+from spotipy.oauth2 import SpotifyOAuth
 import pandas as pd, numpy as np
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.neighbors import NearestNeighbors
