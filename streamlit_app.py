@@ -2,7 +2,7 @@ import streamlit as st
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import requests
-from dotenv import dotenv_values
+# from dotenv import dotenv_values
 
 from helper import truncate_title, get_top_data, fetch_track_uri
 from helper import song_processing, recommend_songs
