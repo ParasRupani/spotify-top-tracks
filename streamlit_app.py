@@ -19,7 +19,12 @@ client_id = st.secrets["CLIENT_ID"]
 client_secret = st.secrets["CLIENT_SECRET"]
 
 # Set up Spotify authorization manager with Client Credentials Flow
-auth_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
+# auth_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
+
+redirect_uri = "https://top-spotify-tracks.streamlit.app/"
+
+# Set up Spotify authorization manager with Authorization Code Flow
+auth_manager = SpotifyOAuth(client_id=client_id, client_secret=client_secret, redirect_uri=redirect_uri, scope="user-top-read", open_browser=False)
 
 # Main function to run the app
 def main():
