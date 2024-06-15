@@ -5,7 +5,6 @@ from sklearn.neighbors import NearestNeighbors
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import requests
-from dotenv import dotenv_values
 import eli5
 from eli5.sklearn import PermutationImportance
 
