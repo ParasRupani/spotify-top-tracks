@@ -8,11 +8,11 @@ from helper import truncate_title, get_top_data, fetch_track_uri
 from helper import song_processing, recommend_songs
 
 # Set up Spotify API credentials
-secrets = dotenv_values(".env")
-client_id, client_secret = secrets.values()
+# secrets = dotenv_values(".env")
+# client_id, client_secret = secrets.values()
 
 # Loading Streamlit Secrets
-# client_id, client_secret = st.secrets()
+client_id, client_secret = st.secrets()
 
 # Set up Spotify authorization manager with Client Credentials Flow
 auth_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
