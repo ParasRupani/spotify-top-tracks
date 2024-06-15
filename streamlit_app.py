@@ -15,7 +15,8 @@ from eli5.sklearn import PermutationImportance
 # client_id, client_secret = secrets.values()
 
 # Loading Streamlit Secrets
-client_id, client_secret = st.secrets()
+client_id = st.secrets["CLIENT_ID"]
+client_secret = st.secrets["CLIENT_SECRET"]
 
 # Set up Spotify authorization manager with Client Credentials Flow
 auth_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
