@@ -7,7 +7,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import requests
 import eli5
 from eli5.sklearn import PermutationImportance
-from streamlit_run import client_id, client_secret
+from streamlit_app import client_id, client_secret
 
 # # Set up Spotify API credentials
 # secrets = dotenv_values(".env")
