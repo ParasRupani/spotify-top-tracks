@@ -205,7 +205,8 @@ def song_processing(track_name):
 
 def recommend_songs(song_example, n_recommendations=6):
     # Load the dataset
-    df = pd.read_csv('./data/tracks_features.csv')
+    df = pd.concat([pd.read_csv(f'./data/tracks_features_part_{i+1}.csv') for i in range(15)], ignore_index=True)
+
 
     # Preprocess the dataset
     # Normalize numerical features
