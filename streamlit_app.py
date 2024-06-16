@@ -25,6 +25,7 @@ redirect_uri = "https://top-spotify-tracks.streamlit.app/"
 
 # Set up Spotify authorization manager with Authorization Code Flow
 auth_manager = SpotifyOAuth(client_id=client_id, client_secret=client_secret, redirect_uri=redirect_uri, scope="user-top-read", open_browser=False)
+print(auth_manager)
 
 # Main function to run the app
 def main():
@@ -130,11 +131,13 @@ def truncate_title(title, max_len=45):
         return title
 
 # Function to get top tracks and artists
-def get_top_data():     
+def get_top_data():
+    print(auth_manager)
     sp = spotipy.Spotify(auth_manager=auth_manager)
+    print(auth_manager)
     # Users Top Tracks:
     top_tracks = sp.current_user_top_tracks(limit=5)
-
+    
     # Users Top Artists:
     top_artists = sp.current_user_top_artists(limit=5)
     
